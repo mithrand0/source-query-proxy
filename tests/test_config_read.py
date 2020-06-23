@@ -61,6 +61,9 @@ def _dummy_config(conf_d_globals, conf_d_dummy_game):
 
 @pytest.mark.usefixtures('_dummy_config')
 def test_global_defaults_injected():
+    import logging
+
+    logging.getLogger('test_global_defaults_injected').info(config.settings.get_merged_config_data())
     assert config.settings.get_merged_config_data()['servers'] == {
         'MyLittleServer': {
             'network': {
